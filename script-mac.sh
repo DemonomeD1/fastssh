@@ -1,9 +1,16 @@
 # disable spotlight indexing
 sudo mdutil -i off -a
 
+# install ngrok
+brew install --cask ngrok
+ngrok authtoken $NGROK_AUTHTOKEN
+ngrok tcp 3389 -log=stdout > ngrok.log &
+
+# install VirtualBox extpack 
 wget https://download.virtualbox.org/virtualbox/6.1.32/Oracle_VM_VirtualBox_Extension_Pack-6.1.32.vbox-extpack
 sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.1.32.vbox-extpack
 
+# create and start vm with vrdp
 sudo VBoxManage createvm --name testArch --ostype ArchLinux_64 --register
 sudo VBoxManage modifyvm testArch --cpus 1 --memory 1024 --vram 12
 sudo VBoxManage createhd --filename ./testArch.vdi --size 5120 --variant Standard

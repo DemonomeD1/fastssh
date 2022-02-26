@@ -13,12 +13,10 @@ jobs:
       with:
         ssh_key: ${{ secrets.SSH_KEY }}
         key_file: id_ecdsa
-    - uses: dm1sh/macos-ngrok-action@v0.0.1
-      with:
-        timeout: 6h
-        port: 3389
-        ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
     - uses: actions/checkout@v2
-    - run: source script-mac.sh
+    - name: source script-mac.sh
+      run: source script-mac.sh
+      env:
+        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v2
