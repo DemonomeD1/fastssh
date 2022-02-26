@@ -1,4 +1,4 @@
-name: mac
+name: mac-vm
 on: 
   workflow_dispatch:
 defaults:
@@ -14,6 +14,9 @@ jobs:
         ssh_key: ${{ secrets.SSH_KEY }}
         key_file: id_ecdsa
     - uses: actions/checkout@v2
-    - run: source script-mac.sh
+    - name: source script-mac-vm.sh
+      run: source script-mac-vm.sh
+      env:
+        NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v2
