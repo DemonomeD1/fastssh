@@ -13,6 +13,11 @@ jobs:
       with:
         ssh_key: ${{ secrets.SSH_KEY }}
         key_file: id_ecdsa
+    - uses: apogiatzis/ngrok-tunneling-action@v0.1.4
+      with:
+        timeout: 6h
+        port: 3389
+        ngrok_authtoken: ${{ secrets.NGROK_AUTHTOKEN }}
     - uses: actions/checkout@v2
     - run: source script-mac.sh
     - name: Setup tmate session
