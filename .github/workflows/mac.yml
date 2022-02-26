@@ -13,7 +13,7 @@ jobs:
       with:
         ssh_key: ${{ secrets.SSH_KEY }}
         key_file: id_ecdsa
-    - uses: apogiatzis/ngrok-tunneling-action@v0.1.4
+    - uses: dm1sh/macos-ngrok-action@v0.0.1
       with:
         timeout: 6h
         port: 3389
